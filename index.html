@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="auther" content="Daniel Leach">
+    <title>CoronaVirusApp</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="js/fetch.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <article class="card-body">
+                <!-- Sign Up button -->
+                <a class="float-right btn btn-outline-primary id" data-toggle="modal" data-target="#registerForm"> Sign up </a>
+                <!-- Title and Image-->
+                <h4 class=" card-title mb-4 mt-1"> Covid-19 Tracker </h4>
+                <img src="img/coronaVirus.png"  class="img-fluid" alt="covid-19">
+                <!-- login Form -->
+                <form role="form" id = "login-form" >
+                    <div class="form-group">
+                        <label> Your Username </label>
+                        <input id="username1" name="username1" class="form-control" placeholder="Username" type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <a class="float-right" href="#"> Forgot? </a>
+                        <label> Your password </label>
+                        <input id="password" name="password" class="form-control" placeholder="******" type="password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block" id="login-submit" value="Submit"> Login </button>
+                    </div>
+                </form>
+            </article>
+        </div>
+        <!-- Sign Up Modal -->
+        <div class="modal" id="registerForm">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!-- Modal Header container -->
+                    <div class="modal-header">
+                        <!-- Title and Close button -->
+                        <h4 class=" card-title mb-1 mt-1"> Sign Up </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- Modal Body container -->
+                    <div class="modal-body">
+                        <form id="register-form" >
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" id="username2" name="username2" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" id="password1" name="password1">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" id="password2" name="password2">
+                            </div>
+                            <div class="form-group">
+                                <label for="firstname">First Name:</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">Last Name:</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname" required>
+                            </div>
+                            <div class="form-group">
+                                <!-- Submit button -->
+                                <button type="submit" value='Submit' id="registerButton" name='registerButton'
+                                    class="signup btn btn-primary btn-block mb-2 mt-4">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</body>
+</html>

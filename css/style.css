@@ -1,0 +1,39 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+
+#content {
+    position:absolute;
+    margin-top:20%;
+    width: 100%;
+    background-color: white;
+    height: 80%;
+
+}
+
+.list {
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+.results {
+    margin-top:15px;
+}
+
+.resultList {
+    font-size: large;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+#ShowMap {
+    margin-top: 3%;
+    padding: 0px;
+    height: 65%;
+}
