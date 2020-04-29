@@ -100,7 +100,7 @@ var doMap = function(){
             }else {
                 console.log(data[value].state);
                  $('.covid-list').append(
-                     '<li class="#" style="list-style-type:none;">' +
+                     '<li class="resultList">' +
                      'Total Infected: ' + data[value].total +
                      '<br>Total Positive: ' + data[value].positive +
                      '<br>Total Deaths: ' + data[value].deaths +
@@ -138,6 +138,40 @@ var doMap = function(){
                     position: pos,
                     map: map
                 });
+                var GEOCODING = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + 
+                    position.coords.latitude + '%2C' + position.coords.longitude + 
+                    '&language=en&key=[Your API KEY for geocoding]';
+                var searchAbbreviation;
+                $.getJSON(GEOCODING).done(function (location) {
+                    // console.log(location.results[6].address_components[0].long_name);
+                    searchName = location.results[6].address_components[0].long_name;
+                    searchAbbreviation = location.results[6].address_components[0].short_name;
+                    console.log("this is abbreviation 1"+searchAbbreviation);
+                    $('.results').prepend(
+                        '<h4 class ="col-md-8 mb-1 mx-auto resultTitle">' + searchName + '</h4>'
+                    );
+                     $.get("https://covidtracking.com/api/states", function (data) {
+                         console.log("This is abbreviation 2" + searchAbbreviation);
+                        for (v in data) {
+                            if (data[v].state == searchAbbreviation) {
+                                 console.log(data[v].state);
+                                $('.covid-list').append(
+                                    '<li class="resultList">' +
+                                    'Total Infected: ' + data[v].total +
+                                    '<br>Total Positive: ' + data[v].positive +
+                                    '<br>Total Deaths: ' + data[v].deaths +
+                                    '<br>Total Recovered: ' + data[v].recovered +
+                                    '<br><h8>Last Updated: ' + data[v].checkTimeEt + '</h8>' +
+                                    '</li>'
+                                );
+                            }
+                        };
+                         
+                     }, 'json');
+                });
+
+               
+
                 map.setCenter(pos);
             }, function () {
                 handleLocationError(true, infoWindow, map.getCenter());
@@ -146,6 +180,8 @@ var doMap = function(){
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
+
+
         // initial map layover
         $.getJSON('states.json', function (json) {            
             flightPath = new google.maps.Polygon({
