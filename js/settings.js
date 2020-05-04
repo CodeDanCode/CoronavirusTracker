@@ -15,7 +15,7 @@ var doSettings = function(){
 
         '<div class="row search-row">' +
         '<div class="col-12 mx-auto">' +
-        '<h3>Set Favorit Location</h3>'+
+        '<h3>Set Favorite Location</h3>'+
         '<div class = "input-group">' +
         '<select class = "custom-select" id = "FavoriteSelect">' +
         '<option selected> Select State</option></select>' +
@@ -44,5 +44,6 @@ var doSettings = function(){
     });
     $('#deleteProfile').click(function(){
         window.localStorage.clear();
+        window.location.replace('index.html');
     });
 };  

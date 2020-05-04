@@ -6,7 +6,8 @@ var doSearch = function(){
 
     $('#content').empty();
     // populates the dropdown menu with states
-    $.get("https://covidtracking.com/api/states", function (data){
+    $.get("https://covidtracking.com/api/v1/states/current.json", function (data){
+        console.log(data);
         for(v in data){
             $('#inputGroupSelect').append(
                 '<option value ="'+v+'">'+data[v].state + '</opiton>'
@@ -82,7 +83,7 @@ var doSearch = function(){
         }, 'json');
 
         // API request for state stats
-        $.get("https://covidtracking.com/api/states",function(data){
+        $.get("https://covidtracking.com/api/v1/states/current.json",function(data){
             $('.covid-list').empty();
             if (favorite == true) {
                 console.log(localFavorite);
@@ -91,7 +92,7 @@ var doSearch = function(){
                     '<li class="resultList">' +
                     'Total Infected: ' + data[localFavorite].total +
                     '<br>Total Positive: ' + data[localFavorite].positive +
-                    '<br>Total Deaths: ' + data[localFavorite].deaths +
+                    '<br>Total Deaths: ' + data[localFavorite].death +
                     '<br>Total Recovered: ' + data[localFavorite].recovered +
                     '<br><h8>Last Updated: ' + data[localFavorite].checkTimeEt + '</h8>' +
                     '</li>'
@@ -105,7 +106,7 @@ var doSearch = function(){
                         '<li class="resultList" >' +
                         'Total Infected: ' + data[value].total +
                         '<br>Total Positive: ' + data[value].positive +
-                        '<br>Total Deaths: ' + data[value].deaths +
+                        '<br>Total Deaths: ' + data[value].death +
                         '<br>Total Recovered: ' + data[value].recovered +
                         '<br><h8>Last Updated: ' + data[value].checkTimeEt + '</h8>' +
                         '</li>'

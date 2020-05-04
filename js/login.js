@@ -17,17 +17,22 @@ $(document).ready(function(){
         // checks if all fields are entered and stores them in Local storage
         if(inputUsername != null && inputEmail != null && inputPassword1 != null && inputPassword2 != null 
             && inputFirstname != null && inputLastname != null){
-            window.localStorage.setItem("username2", inputUsername.value);
-            window.localStorage.setItem('email', inputEmail.value);
-            window.localStorage.setItem('firstname', inputFirstname.value);
-            window.localStorage.setItem('lastname', inputLastname.value);
-            if (inputPassword1.value == inputPassword2.value) {
-                // set is statement for one password
-                window.localStorage.setItem("password1", inputPassword1.value);
-            } else {
-                alert("Password does not match");
-            }  
-            window.location.replace('home.html');
+                if(inputUsername != window.localStorage.getItem('username2')&& inputEmail != window.localStorage.getItem('email')){
+                    window.localStorage.setItem("username2", inputUsername.value);
+                    window.localStorage.setItem('email', inputEmail.value);
+                    window.localStorage.setItem('firstname', inputFirstname.value);
+                    window.localStorage.setItem('lastname', inputLastname.value);
+                    if (inputPassword1.value == inputPassword2.value) {
+                        // set is statement for one password
+                        window.localStorage.setItem("password1", inputPassword1.value);
+                    } else {
+                        alert("Password does not match");
+                    }
+                    window.location.replace('index.html');
+                }else{
+                    alert("username or email already exists. Please enter new Username or email");
+                }
+            
         }
     };
 

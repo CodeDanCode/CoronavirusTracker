@@ -26,7 +26,7 @@ var doMap = function(){
     workspace.appendChild(div3);
     
     // populate state selection
-    $.get("https://covidtracking.com/api/states", function (data) {
+    $.get("https://covidtracking.com/api/v1/states/current.json", function (data) {
         for (v in data) {
             $('#inputGroupSelect').append(
                 '<option value ="' + v + '">' + data[v].state + '</opiton>'
@@ -85,14 +85,14 @@ var doMap = function(){
         value = $('#inputGroupSelect :selected').val(); // int
         localFavorite = parseInt(window.localStorage.getItem('favorite')); // int
         // api call for state data
-        $.get("https://covidtracking.com/api/states", function (data) {  
+        $.get("https://covidtracking.com/api/v1/states/current.json", function (data) {  
             $('.covid-list').empty();
             if(favorite == true){
                 $('.covid-list').append(
                     '<li class="resultList">' +
                     'Total Infected: ' + data[localFavorite].total +
                     '<br>Total Positive: ' + data[localFavorite].positive +
-                    '<br>Total Deaths: ' + data[localFavorite].deaths +
+                    '<br>Total Deaths: ' + data[localFavorite].death +
                     '<br>Total Recovered: ' + data[localFavorite].recovered +
                     '<br><h8>Last Updated: ' + data[localFavorite].checkTimeEt + '</h8>' +
                     '</li>'
@@ -103,7 +103,7 @@ var doMap = function(){
                      '<li class="resultList">' +
                      'Total Infected: ' + data[value].total +
                      '<br>Total Positive: ' + data[value].positive +
-                     '<br>Total Deaths: ' + data[value].deaths +
+                     '<br>Total Deaths: ' + data[value].death +
                      '<br>Total Recovered: ' + data[value].recovered +
                      '<br><h8>Last Updated: ' + data[value].checkTimeEt + '</h8>' +
                      '</li>'
@@ -140,17 +140,16 @@ var doMap = function(){
                 });
                 var GEOCODING = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + 
                     position.coords.latitude + '%2C' + position.coords.longitude + 
-                    '&language=en&key=[Your API KEY for geocoding]';
+                    '&language=en&key=[YOUR API KEY HERE]';
                 var searchAbbreviation;
                 $.getJSON(GEOCODING).done(function (location) {
-                    // console.log(location.results[6].address_components[0].long_name);
                     searchName = location.results[6].address_components[0].long_name;
                     searchAbbreviation = location.results[6].address_components[0].short_name;
                     console.log("this is abbreviation 1"+searchAbbreviation);
                     $('.results').prepend(
                         '<h4 class ="col-md-8 mb-1 mx-auto resultTitle">' + searchName + '</h4>'
                     );
-                     $.get("https://covidtracking.com/api/states", function (data) {
+                     $.get("https://covidtracking.com/api/v1/states/current.json", function (data) {
                          console.log("This is abbreviation 2" + searchAbbreviation);
                         for (v in data) {
                             if (data[v].state == searchAbbreviation) {
@@ -159,7 +158,7 @@ var doMap = function(){
                                     '<li class="resultList">' +
                                     'Total Infected: ' + data[v].total +
                                     '<br>Total Positive: ' + data[v].positive +
-                                    '<br>Total Deaths: ' + data[v].deaths +
+                                    '<br>Total Deaths: ' + data[v].death +
                                     '<br>Total Recovered: ' + data[v].recovered +
                                     '<br><h8>Last Updated: ' + data[v].checkTimeEt + '</h8>' +
                                     '</li>'
@@ -169,8 +168,6 @@ var doMap = function(){
                          
                      }, 'json');
                 });
-
-               
 
                 map.setCenter(pos);
             }, function () {
